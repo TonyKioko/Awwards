@@ -48,5 +48,5 @@ def review_project(request,project_id):
             reviews.save()
             return redirect('index')
     else:
-        form = CommentForm()
-    return render(request, 'comment.html', {"user":current_user,"form":form})
+        form = ReviewForm()
+    return render(request, 'reviews.html', {"user":current_user,"form":form})
