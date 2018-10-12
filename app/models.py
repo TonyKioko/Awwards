@@ -37,6 +37,10 @@ class Project(models.Model):
 
     def delete_project(self):
         self.delete()
+    @classmethod
+    def get_projects(cls):
+        projects = Project.objects.all()
+        return projects
 class Review(models.Model):
     design = models.PositiveIntegerField(default=0,blank=True)
     usability = models.PositiveIntegerField(default=0,blank=True)
