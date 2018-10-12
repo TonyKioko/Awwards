@@ -1,4 +1,4 @@
-<!--
+
 {% load bootstrap4 %}
 {% load static %}
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -12,7 +12,7 @@
     </section>
 
 
-    <form class="navbar-form" role="search" action="{% url 'searching' %}" style="width:auto">
+    <form class="navbar-form" role="search"  style="width:auto">
 
        <div class="input-group">
          <input type="text" class="form-control" placeholder="Search users" name="username" style="height:38px;">
@@ -23,8 +23,8 @@
      </form>
     <section class="icons-section" >
 
-      <a href="{% url "add_photo"%}"><ion-icon name="add" class="ionic"></ion-icon></a>
-      <a href="{% url "userProfiles" %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
+      <a href="{% url "add_project"%}"><ion-icon name="add" class="ionic"></ion-icon></a>
+      <a href=""><ion-icon name="contact" class="ionic"></ion-icon></a>
 
 
 
@@ -34,15 +34,11 @@
 </section>
     </div>
   </nav>
-  {% else %}
-    <li>
-      <a href="/accounts/login"><i class="material-icons" style="font-size:40px">lock_outline</i></a>
-    </li>
-  {% endif %}
+
 <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
- -->
+
 
 
 
