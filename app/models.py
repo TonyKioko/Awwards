@@ -46,7 +46,7 @@ class Review(models.Model):
     usability = models.PositiveIntegerField(default=0,blank=True)
     content = models.PositiveIntegerField(default=0,blank=True)
     user = models.ForeignKey(User, null=True)
-    profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
 
     def __int__(self):
         return self.design.value()

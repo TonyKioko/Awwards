@@ -18,7 +18,7 @@ def index(request):
 
     return render(request,'index.html',context)
 
-@login_required(login_url='/accounts/login')
+# @login_required(login_url='/accounts/login')
 def new_project(request):
 	current_user = request.user
 	if request.method == 'POST':
@@ -33,3 +33,20 @@ def new_project(request):
 			form = ProjectForm()
             # context= {"form":form}
 	return render(request, 'project.html',{"form":form})
+
+
+# @login_required(login_url='/accounts/login/')
+def review_project(request,project_id):
+    project = get_object_or_404(Image, pk=project_id)
+    current_user = request.user
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            reviews = form.save(commit=False)
+            reviews.image = image
+            reviews.user = current_user
+            reviews.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {"user":current_user,"form":form})
