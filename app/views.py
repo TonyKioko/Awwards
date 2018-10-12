@@ -32,4 +32,4 @@ def new_project(request):
 	else:
 			form = ProjectForm()
             # context= {"form":form}
-	return render(request, 'new_image.html',{"form":form})
+	return render(request, 'project.html',{"form":form})
