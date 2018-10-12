@@ -50,3 +50,24 @@ def review_project(request,project_id):
     else:
         form = ReviewForm()
     return render(request, 'reviews.html', {"user":current_user,"form":form})
+
+
+def search_projects(request):
+    # profile = Profile.get_profile()
+
+    # if 'caption' in request.GET and request.GET["caption"]:
+    if 'title' in request.GET and request.GET["title"]:
+
+        search_term = request.GET.get("title")
+        found_projects = Project.search_by_title(search_term)
+        message = f"{search_term}"
+        print(search_term)
+
+        context = {"found_projects":found_projects,"message":message}
+
+        return render(request, 'search.html',context)
+
+    else:
+        message = "You haven't searched for any term"
+        # context={"message":message}
+        return render(request, 'search.html',{"message":message})
