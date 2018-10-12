@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from tinymce.models import HTMLField
+from tinymce.models import HTMLField
 # Create your models here.
 
 class Profile(models.Model):
     photo = models.ImageField(upload_to='profpics/',default='NO IMAGE')
-    bio = models.CharField(max_length=60,blank=True)
+    bio = HTMLField()
+    # bio = models.CharField(max_length=60,blank=True)
     user = models.ForeignKey(User, null=True)
     contact = models.CharField(max_length=60,blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -23,7 +24,8 @@ class Profile(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=60,blank=True)
     image = models.ImageField(upload_to='projectpics/',default='NO IMAGE')
-    description = models.CharField(max_length=60,blank=True)
+    description = HTMLField()
+    # description = models.CharField(max_length=60,blank=True)
     link = models.URLField(blank=True)
     user = models.ForeignKey(User, null=True)
     profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
