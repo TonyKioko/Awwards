@@ -41,6 +41,13 @@ class Project(models.Model):
     def get_projects(cls):
         projects = Project.objects.all()
         return projects
+    @classmethod
+    def search_by_title(cls,search_term):
+    	projects = cls.objects.filter(title__icontains=search_term)
+    	return projects
+
+    class Meta:
+        ordering = ['-timestamp']
 class Review(models.Model):
     design = models.PositiveIntegerField(default=0,blank=True)
     usability = models.PositiveIntegerField(default=0,blank=True)
