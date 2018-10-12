@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from tinymce.models import HTMLField
+# from tinymce.models import HTMLField
 # Create your models here.
 
 class Profile(models.Model):
@@ -12,23 +12,28 @@ class Profile(models.Model):
 
 
     def __str__(self):
-        return self.bio
+        return self.user.username
 
     def save_profile(self):
         self.save()
 
     def delete_profile(self):
         self.delete()
-    @classmethod
-    def search_by_username(cls,search_term):
-        users = cls.objects.filter(user__username__icontains=search_term)
-        return users
 
-    @classmethod
-    def get_profile(cls):
-        profile = Profile.objects.all()
-        return profile
-    @classmethod
-    def profile_by_id(cls, id):
-        profile = Profile.objects.get(user = id)
-        return profile
+class Project(models.Model):
+    title = models.CharField(max_length=60,blank=True)
+    image = models.ImageField(upload_to='projectpics/',default='NO IMAGE')
+    description = models.CharField(max_length=60,blank=True)
+    link = models.URLField(blank=True)
+    user = models.ForeignKey(User, null=True)
+    profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
