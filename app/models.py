@@ -37,3 +37,18 @@ class Project(models.Model):
 
     def delete_project(self):
         self.delete()
+class Review(models.Model):
+    design = models.PositiveIntegerField(default=0,blank=True)
+    usability = models.PositiveIntegerField(default=0,blank=True)
+    content = models.PositiveIntegerField(default=0,blank=True)
+    user = models.ForeignKey(User, null=True)
+    profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
+
+    def __int__(self):
+        return self.design.value()
+
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
