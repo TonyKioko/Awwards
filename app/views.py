@@ -28,7 +28,7 @@ def signup(request):
 
     return render(request, 'registration/registration.html', {'form': form})
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def index(request):
 
     message = "Hello World"
@@ -41,7 +41,7 @@ def index(request):
 
     return render(request,'index.html',context)
 
-# @login_required(login_url='/accounts/login')
+@login_required(login_url='/accounts/login')
 def new_project(request):
 	current_user = request.user
 	if request.method == 'POST':
@@ -58,7 +58,7 @@ def new_project(request):
 	return render(request, 'project.html',{"form":form})
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def review_project(request,project_id):
     project = get_object_or_404(Image, pk=project_id)
     current_user = request.user
