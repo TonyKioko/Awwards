@@ -9,10 +9,19 @@ class Profile(models.Model):
     photo = models.ImageField(upload_to='profpics/',default='NO IMAGE')
     bio = HTMLField()
     # bio = models.CharField(max_length=60,blank=True)
-    user = models.ForeignKey(User, null=True)
+    # user = models.ForeignKey(User, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     contact = models.CharField(max_length=60,blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
     def __str__(self):
         return self.user.username
@@ -22,6 +31,10 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
+    @classmethod
+    def get_by_id(cls, id):
+        profile = Profile.objects.get(user = id)
+        return profile
 
 class Project(models.Model):
     title = models.CharField(max_length=60,blank=True)
