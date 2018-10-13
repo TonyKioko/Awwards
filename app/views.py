@@ -98,20 +98,21 @@ def new_project(request):
 
 
 @login_required(login_url='/accounts/login/')
-def review_project(request,project_id):
-    project = get_object_or_404(Image, pk=project_id)
+def review_project(request,id):
+    item = Project.single_project(id=id)
+    project = get_object_or_404(Project, pk=id)
     current_user = request.user
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
             reviews = form.save(commit=False)
-            reviews.image = image
+            reviews.project = project
             reviews.user = current_user
             reviews.save()
             return redirect('index')
     else:
         form = ReviewForm()
-    return render(request, 'reviews.html', {"user":current_user,"form":form})
+    return render(request, 'reviews.html', {"user":current_user,"project":item,"form":form})
 
 
 def search_projects(request):

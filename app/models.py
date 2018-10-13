@@ -15,7 +15,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile",primary_key=True)
     contact = models.CharField(max_length=60,blank=True)
     timestamp = models.DateTimeField(default=timezone.now())
-
     # timestamp = models.DateTimeField(auto_now_add=True,null = True)
 
     @receiver(post_save, sender=User)
@@ -63,6 +62,12 @@ class Project(models.Model):
 
     def delete_project(self):
         self.delete()
+
+    @classmethod
+    def single_project(cls,id):
+        project = Project.objects.filter(id =id)
+        return project
+
     @classmethod
     def get_projects(cls):
         projects = Project.objects.all()
