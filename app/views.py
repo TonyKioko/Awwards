@@ -2,8 +2,31 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from app.models import *
 from app.forms import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
+
+def signup(request):
+    """
+    signup form view function
+    """
+    # checking if request method is a post
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+
+        # form validationq
+        if form.is_valid():
+            # saving user credentials and creating uer instance  if form is valid
+            user = form.save()
+
+            # user passed as argument to auth_login function
+            auth_login(request, user)
+            return redirect('index')
+    else:
+        form = SignUpForm()
+
+    return render(request, 'registration/registration.html', {'form': form})
 
 # @login_required(login_url='/accounts/login/')
 def index(request):
