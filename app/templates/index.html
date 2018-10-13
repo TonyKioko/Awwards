@@ -1,21 +1,41 @@
 {%extends 'base.html'%} {% load static %} {% load bootstrap4 %} {% block content %}
 
 <!-- {{message}} -->
+<div class="projects" style="margin-top:120px;">
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3"></div>
-    {% for project in projects %}
-    <img src="{{project.image.url}}"> {{project.title}} <br> {{project.description | safe}} <br>
+  <div class="container">
+    <div class="row">
+        {% for project in projects %}
+      <div class="col-md-4">
+
+    <div class="card" style="height:300px;margin-bottom:10px;">
+      <div class="card-body">
+        <a href="{{project.link}}">
+            <img class="card-img-top mb-10" src="{{project.image.url}}" style="height:260px;width:100%;">
+        </a>
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+
+        </div>
+      </div>
+    </div>
+
+      </div>
+      <!-- {% for project in projects %}
+      <img src="{{project.image.url}}"> {{project.title}} <br> {{project.description | safe}} <br>
 
 
-    <a href="{{project.link}}" target="_blank">Site</a>
-    <br>
+      <a href="{{project.link}}" target="_blank">Site</a>
+      <br>
 
 
-    <br>
-    <br> {% endfor %}
-    <div class="col-md-3"></div>
+      <br>
+      <br> {% endfor %} -->
+      <!-- <div class="col-md-3"></div> -->
+      {% endfor %}
+    </div>
   </div>
 </div>
+
 {% endblock %}
