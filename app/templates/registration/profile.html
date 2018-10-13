@@ -1,6 +1,10 @@
-{{ profile.username }}
-{{profile_details.contact | safe}}
-{{profile_details.user | upper}}
+
+{% load bootstrap4 %}
+{% load static%}
+
+{% block content %}
+<!-- {{profile_details.contact | safe}}
+{{profile_details.user | upper}} -->
 
 <div class="container">
 
@@ -8,7 +12,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
-        <div class="panel panel-success" style="height:auto;float:left;width:100%;margin-bottom:10%;margin-left:0%;border:3px double #0E5582;">
+        <div class="panel panel-success text-center" style="width:auto;height:auto;border:3px double #0E5582;vertical-align:middle">
 
             <div class="panel-body">
               {% if profile_details.photo %}
@@ -22,11 +26,42 @@
                  <!-- <p><i>Posted At: </i><b>{{pitch.posted}}</b></p> -->
             </div>
             <div class="panel-footer">
-                    <!-- <h4><i>Posted By : </i><b>{{pitch.user.username}}</b></h4> -->
+                  <p>
+
+                    {{ profile.username }}
+
+                  </p>
+
+            </div>
+            <div class="panel-footer">
+                  <h4>
+
+                  Contact :  {{ profile_details.contact }}
+
+                  </h4>
 
             </div>
             <div class="panel-footer">
                     <!-- <a href="/pitch/{{pitch.id}}" style=""><h4>Add Comment | View Comments</h4></a> -->
+                    {% if profile.username == user.username %}
+
+                                <a class="btn btn-sm btn-edit" href="{% url 'update_profile'%}">Edit Profile</a>
+                      {%endif%}
+            </div>
+            <div class="panel-footer">
+                  <h4>
+
+                    {{ profile_details.bio }}
+
+                  </h4>
+
+            </div>
+            <div class="panel-footer">
+                  <h3>
+
+                  Joined awards   {{ profile_details.timestamp | timesince }} ago
+
+                </h3>
 
             </div>
         </div>
@@ -34,4 +69,41 @@
     </div>
     <div class="col-md-2"></div>
   </div>
+  <hr>
+  <div class="row">
+    {% if projects %}
+    {% if profile.username == user.username %}
+    <h2>You have {{ projects | length}} projects
+<span>
+  <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >Add Project</a>
+
+</span>
+    </h2>
+      <!-- <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >  <i class="fas fa-cloud-upload-alt"></i></a> to upload</h4></span> -->
+      <!-- <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >Add Project</a> -->
+
+    {%else%}
+    <h3>
+      This user has {{ projects | length}} projects
+  <!-- <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >Add Project</a> -->
+    </h3>
+        {%endif%}
+    {%endif%}
+{% for project in projects %}
+
+  <div class="col-md-3">
+    <a href="{{project.link}}">
+<div class="card-body">
+<img src=" {{project.image.url}}" alt="">
 </div>
+</a>
+<div class="card-header"><p class="text-center">
+  {{project.description}}
+</p></div>
+  </div>
+
+
+    {%endfor%}
+  </div>
+</div>
+{% endblock %}
