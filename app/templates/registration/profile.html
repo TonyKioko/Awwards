@@ -1,0 +1,37 @@
+{{ profile.username }}
+{{profile_details.contact | safe}}
+{{profile_details.user | upper}}
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <div class="panel panel-success" style="height:auto;float:left;width:100%;margin-bottom:10%;margin-left:0%;border:3px double #0E5582;">
+
+            <div class="panel-body">
+              {% if profile_details.photo %}
+             <img src="{{profile_details.photo.url}}" alt="profile-photo" class="img-responsive" style="width:150px;height:150px;border-radius:50%;">
+             {% else %}
+             <!-- <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof"> -->
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3AeEIETd1WF-w7g5xkFdUfvcX0FK7tH5gV7qiidS1iW4hJFAzzw" style="height:80px;width:80px;">
+
+             {% endif %}
+
+                 <!-- <p><i>Posted At: </i><b>{{pitch.posted}}</b></p> -->
+            </div>
+            <div class="panel-footer">
+                    <!-- <h4><i>Posted By : </i><b>{{pitch.user.username}}</b></h4> -->
+
+            </div>
+            <div class="panel-footer">
+                    <!-- <a href="/pitch/{{pitch.id}}" style=""><h4>Add Comment | View Comments</h4></a> -->
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

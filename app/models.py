@@ -31,6 +31,11 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
+
+    @classmethod
+    def filter_by_id(cls, id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
     @classmethod
     def get_by_id(cls, id):
         profile = Profile.objects.get(user = id)
@@ -57,6 +62,11 @@ class Project(models.Model):
     @classmethod
     def get_projects(cls):
         projects = Project.objects.all()
+        return projects
+
+    @classmethod
+    def get_profile_pic(cls,profile):
+        projects = Project.objects.filter(profile__pk = profile)
         return projects
     @classmethod
     def search_by_title(cls,search_term):

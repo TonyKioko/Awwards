@@ -42,6 +42,24 @@ def index(request):
     return render(request,'index.html',context)
 
 @login_required(login_url='/accounts/login/')
+def profile(request, username):
+    title = "Profile"
+    profile = User.objects.get(username=username)
+    # comments = Comments.objects.all()
+    users = User.objects.get(username=username)
+    id = request.user.id
+    form = ProfileForm()
+
+    try :
+        profile_details = Profile.get_by_id(profile.id)
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
+
+
+    projects = Project.get_profile_pic(profile.id)
+    return render(request, 'registration/profile.html', {'title':title,'profile':profile,"projects":projects, 'profile_details':profile_details,"form":form})
+
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     title="Edit"
     profile = User.objects.get(username=request.user)
@@ -60,7 +78,7 @@ def update_profile(request):
     else:
         form = ProfileForm()
 
-    return render(request, 'profile/edit_profile.html', {'form':form, 'profile_details':profile_details})
+    return render(request, 'registration/update_profile.html', {'form':form, 'profile_details':profile_details})
 
 @login_required(login_url='/accounts/login')
 def new_project(request):
