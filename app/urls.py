@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^searched/', views.search_projects, name='search'),
     url(r'^user/(?P<username>\w+)', views.profile, name='profile'),
     url(r'^profile/update/', views.update_profile, name='update_profile'),
+    url(r'^project_details/(?P<id>\d+)', views.project_details, name='projectdetails'),
 
 
 

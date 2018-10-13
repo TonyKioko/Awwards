@@ -1,0 +1,30 @@
+{%extends 'base.html'%} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <!-- <div class="projectimage" style='background-image:url("{{project.image.url}}")'> -->
+    <!--  -->
+
+    <img src="{{project.image.url}}" alt="" style="width:100%;height:600px;">
+  </div <div class="row">
+  <!-- <div class="projectimage" style='background-image:url("{{project.image.url}}")'> -->
+  <!--  -->
+  <p>
+    <b>Posted:</b> {{project.timestamp | timesince }} ago
+  </p>
+  <p>
+    <b>Title:</b> {{project.title}}
+  </p>
+  <p>
+    Description:
+    <!-- <b>Description:</b> {{project.description}} -->
+    {% autoescape off %}
+    {{ project.description  }}
+{% endautoescape %}
+  </p>
+</div </div>
+
+
+
+
+{% endblock %}
