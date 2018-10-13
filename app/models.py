@@ -4,7 +4,7 @@ from tinymce.models import HTMLField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 class Profile(models.Model):
@@ -64,7 +64,7 @@ class Project(models.Model):
         self.delete()
 
     @classmethod
-    def single_project(cls,id):
+    def project_by_id(cls,id):
         project = Project.objects.filter(id =id)
         return project
 
@@ -85,10 +85,10 @@ class Project(models.Model):
     class Meta:
         ordering = ['-timestamp']
 class Review(models.Model):
-    design = models.PositiveIntegerField(default=0,blank=True)
-    usability = models.PositiveIntegerField(default=0,blank=True)
-    content = models.PositiveIntegerField(default=0,blank=True)
-    user = models.ForeignKey(User, null=True)
+    design = models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
+    usability =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
+    content =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
+    user =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
 
     def __int__(self):
