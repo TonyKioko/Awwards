@@ -8,15 +8,16 @@
         {% for project in projects %}
       <div class="col-md-4">
 
-    <div class="card" style="height:300px;margin-bottom:10px;">
+    <div class="card" style="height:500px;margin-bottom:10px;">
       <div class="card-body">
         <a href="{{project.link}}">
             <img class="card-img-top mb-10" src="{{project.image.url}}" style="height:260px;width:100%;">
         </a>
+          <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;border-radius:20%;">Rate</a>
       </div>
       <div class="card-body">
         <div class="card-text">
-          <a href="{% url 'review' project_id=project.id%}" style="color:black;font-size:12px;font-weight:lighter;;"><i class="far fa-comment  fa-2x ml-4"></i></a>
+          <!-- <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block">Rate</a> -->
         </div>
       </div>
     </div>

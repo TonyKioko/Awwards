@@ -96,6 +96,13 @@ def new_project(request):
             # context= {"form":form}
 	return render(request, 'project.html',{"form":form})
 
+@login_required(login_url='/accounts/login')
+def project_details(request,id):
+    project = Project.objects.get(id = id)
+    # comments = Comment.objects.order_by('-timestamp')
+
+    context={"project":project}
+    return render(request, 'project_details.html',context)
 
 @login_required(login_url='/accounts/login/')
 def review_project(request,project_id):
