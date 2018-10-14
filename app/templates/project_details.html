@@ -22,6 +22,19 @@
     {{ project.description  }}
 {% endautoescape %}
   </p>
+  <p>
+    {% for review in reviews %}
+    {% if project.id == review.project.id %}
+
+    {{review.design}}
+    {{review.usability}}
+
+    {{review.design}}
+
+    {%endif%}
+    {% endfor  %}
+
+  </p>
 </div </div>
 
 

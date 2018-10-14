@@ -90,7 +90,8 @@ class Review(models.Model):
     content =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     user =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
-
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.user
 

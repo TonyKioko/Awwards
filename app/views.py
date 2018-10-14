@@ -106,9 +106,9 @@ def new_project(request):
 @login_required(login_url='/accounts/login')
 def project_details(request,id):
     project = Project.objects.get(id = id)
-    # comments = Comment.objects.order_by('-timestamp')
+    reviews = Review.objects.order_by('-timestamp')
 
-    context={"project":project}
+    context={"project":project,"reviews":reviews}
     return render(request, 'project_details.html',context)
 
 @login_required(login_url='/accounts/login/')
