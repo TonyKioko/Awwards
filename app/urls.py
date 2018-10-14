@@ -14,6 +14,11 @@ urlpatterns = [
     url(r'^profile/update/', views.update_profile, name='update_profile'),
     url(r'^project_details/(?P<id>\d+)', views.project_details, name='projectdetails'),
 
+    #
+    url(r'^api/project/$', views.ProjectList.as_view()),
+    url(r'api/profile/profile-id/(?P<pk>[0-9]+)/$',views.ProjectDescription.as_view()),
+
+
 
 
 
