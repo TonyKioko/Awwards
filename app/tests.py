@@ -32,3 +32,25 @@ class ProfileTestClass(TestCase):
         self.profile.delete_profile()
         profile = Profile.objects.all()
         self.assertTrue(len(profile) == 0)
+
+class ProjectTestClass(TestCase):
+
+    def setUp(self):
+        self.project = Project(title ='new project', image='image.url',description="awwaaards",link="http://www.awwaards.com")
+
+    def tearDown(self):
+        Project.objects.all().delete()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.project, Project))
+
+    def test_save_method(self):
+        self.project.save_project()
+        projects = Project.objects.all()
+        self.assertTrue(len(projects)>0)
+    def test_delete_method(self):
+        self.project.save_project()
+        projects = Project.objects.all()
+        self.project.delete_project()
+        projects = Project.objects.all()
+        self.assertTrue(len(projects)==0)
