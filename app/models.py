@@ -91,11 +91,11 @@ class Review(models.Model):
     user =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
 
-    def __int__(self):
-        return self.design.value()
+    def __str__(self):
+        return self.user
 
-    def save_project(self):
+    def save_review(self):
         self.save()
 
-    def delete_project(self):
+    def delete_review(self):
         self.delete()

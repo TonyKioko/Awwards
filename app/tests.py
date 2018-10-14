@@ -54,3 +54,30 @@ class ProjectTestClass(TestCase):
         self.project.delete_project()
         projects = Project.objects.all()
         self.assertTrue(len(projects)==0)
+
+class ReviewTestClass(TestCase):
+    def setUp(self):
+        # self.project=Project(caption="test iamge",likes=1)
+        self.user = User(username='tony')
+        self.user.save()
+        self.project = Project(title ='new project', image='image.url',description="awwaaards",link="http://www.awwaards.com")
+        self.project.save_project()
+
+        self.new_review=Review(design="9",usability="9",content="10",user=self.user,project=self.project)
+        self.new_review.save_review()
+
+    def tearDown(self):
+        Review.objects.all().delete()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_review,Review))
+
+    def test_save_comment(self):
+        reviews = Review.objects.all()
+        self.assertTrue(len(reviews)>0)
+
+    def test_delete_comment(self):
+        self.new_review.save_review()
+        self.new_review.delete_review()
+        reviews = Review.objects.all()
+        self.assertTrue(len(reviews)==0)
