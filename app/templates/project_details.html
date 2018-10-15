@@ -10,6 +10,10 @@
   <!-- <div class="projectimage" style='background-image:url("{{project.image.url}}")'> -->
   <!--  -->
   <p>
+    <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;border-radius:20%;">Rate</a>
+
+  </p>
+  <p>
     <b>Posted:</b> {{project.timestamp | timesince }} ago
   </p>
   <p>
@@ -24,10 +28,10 @@
   </p>
   <p>
       <h1>  RATINGS </h1>
-      {{project.avg_design}}
-      {{project.avg_usability}}
-      {{project.avg_content}}
-      
+      {{project.avg_design |floatformat}}
+      {{project.avg_usability |floatformat}}
+      {{project.avg_content |floatformat}} <br>
+
     {% for review in reviews %}
     {% if project.id == review.project.id %}
   <b>{{review.user.username}}</b>
@@ -36,6 +40,13 @@
     {{review.usability}}
 
     {{review.content}}
+    ((
+    {{int(review.design)/3} +
+    {{review.usability}} +
+    {{review.content}}
+
+
+    )/3)
 <br>
     {%endif%}
     {% endfor  %}

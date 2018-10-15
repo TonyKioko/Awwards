@@ -11,6 +11,8 @@ from rest_framework import status
 from .models import  *
 from .serializer import *
 from .permissions import IsAdminOrReadOnly
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -134,7 +136,8 @@ def review_project(request,project_id):
             review.usability = usability
             review.content = content
             review.save()
-            return redirect('index')
+            # return redirect('index')
+            return HttpResponseRedirect(reverse('projectdetails', args=(project.id,)))
     else:
         form = ReviewForm()
     return render(request, 'reviews.html', {"user":current_user,"project":proj,"form":form})
