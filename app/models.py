@@ -55,6 +55,16 @@ class Project(models.Model):
     profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def avg_design(self):
+        design_review = map(lambda x: x.design, self.reviews.all())
+        return np.mean(design_reviews)
+    def avg_content(self):
+        content_reviews = map(lambda x: x.content, self.reviews.all())
+        return np.mean(content_review)
+    def avg_usability(self):
+        usability_reviews = map(lambda x: x.usability, self.reviews.all())
+        return np.mean(usability_reviews)
+
     def __str__(self):
         return self.title
 
@@ -86,6 +96,7 @@ class Project(models.Model):
     class Meta:
         ordering = ['-timestamp']
 class Review(models.Model):
+    # https://www.codementor.io/jadianes/get-started-with-django-building-recommendation-review-app-du107yb1a
     REVIEW_CHOICES = (
         (1, '1'),
         (2, '2'),
