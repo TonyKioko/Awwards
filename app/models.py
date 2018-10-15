@@ -55,14 +55,17 @@ class Project(models.Model):
     profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    # Converted map into list after this error
+    # unsupported operand type(s) for /: ‘map’ and 'int’
+
     def avg_design(self):
-        design_review = map(lambda x: x.design, self.reviews.all())
+        design_reviews = list(map(lambda x: x.design, self.review_set.all()))
         return np.mean(design_reviews)
     def avg_content(self):
-        content_reviews = map(lambda x: x.content, self.reviews.all())
-        return np.mean(content_review)
+        content_reviews = list(map(lambda x: x.content, self.review_set.all()))
+        return np.mean(content_reviews)
     def avg_usability(self):
-        usability_reviews = map(lambda x: x.usability, self.reviews.all())
+        usability_reviews = list(map(lambda x: x.usability, self.review_set.all()))
         return np.mean(usability_reviews)
 
     def __str__(self):

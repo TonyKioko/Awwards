@@ -24,6 +24,10 @@
   </p>
   <p>
       <h1>  RATINGS </h1>
+      {{project.avg_design}}
+      {{project.avg_usability}}
+      {{project.avg_content}}
+      
     {% for review in reviews %}
     {% if project.id == review.project.id %}
   <b>{{review.user.username}}</b>

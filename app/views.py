@@ -119,10 +119,21 @@ def review_project(request,project_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            reviews = form.save(commit=False)
-            reviews.project = project
-            reviews.user = current_user
-            reviews.save()
+            # reviews = form.save(commit=False)
+            # reviews.project = project
+            # reviews.user = current_user
+            # reviews.save()
+
+            design = form.cleaned_data['design']
+            usability = form.cleaned_data['usability']
+            content = form.cleaned_data['content']
+            review = Review()
+            review.project = project
+            review.user = current_user
+            review.design = design
+            review.usability = usability
+            review.content = content
+            review.save()
             return redirect('index')
     else:
         form = ReviewForm()
