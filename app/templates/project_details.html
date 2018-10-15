@@ -28,9 +28,13 @@
   </p>
   <p>
       <h1>  RATINGS </h1>
+      {% if reviews %}
       {{project.avg_design |floatformat}}
       {{project.avg_usability |floatformat}}
       {{project.avg_content |floatformat}} <br>
+      {%else%}
+      <p>This project has no reviews</p>
+      {%endif%}
 
     {% for review in reviews %}
     {% if project.id == review.project.id %}

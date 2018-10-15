@@ -83,6 +83,8 @@ def update_profile(request):
             edit = form.save(commit=False)
             edit.user = request.user
             edit.save()
+            # return HttpResponseRedirect(reverse('profile', username=request.user))
+
             return redirect('profile', username=request.user)
     else:
         form = ProfileForm()
