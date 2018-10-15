@@ -120,7 +120,7 @@ class Review(models.Model):
     # content =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     # user =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     # user = models.ForeignKey(User,null=True,blank=True)
-    average =  models.IntegerField(default=0,blank=False)
+    average =  models.DecimalField(default=1,blank=False,decimal_places=2,max_digits=40)
 
     project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)

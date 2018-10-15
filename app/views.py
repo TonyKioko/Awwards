@@ -135,7 +135,7 @@ def review_project(request,project_id):
             review.design = design
             review.usability = usability
             review.content = content
-            rate.average = (rate.content + rate.design + rate.usability)/3
+            review.average = (review.design + review.usability + review.content)/3
             review.save()
             # return redirect('index')
             return HttpResponseRedirect(reverse('projectdetails', args=(project.id,)))

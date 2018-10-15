@@ -40,13 +40,7 @@
     {{review.usability}}
 
     {{review.content}}
-    ((
-    {{int(review.design)/3} +
-    {{review.usability}} +
-    {{review.content}}
-
-
-    )/3)
+  {{review.average}}
 <br>
     {%endif%}
     {% endfor  %}
