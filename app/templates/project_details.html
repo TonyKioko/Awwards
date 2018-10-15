@@ -23,13 +23,15 @@
 {% endautoescape %}
   </p>
   <p>
+      <h1>  RATINGS </h1>
     {% for review in reviews %}
     {% if project.id == review.project.id %}
-  <b>{{review.user}}</b>
+  <b>{{review.user.username}}</b>
+
     {{review.design}}
     {{review.usability}}
 
-    {{review.design}}
+    {{review.content}}
 <br>
     {%endif%}
     {% endfor  %}
