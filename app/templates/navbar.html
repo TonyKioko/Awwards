@@ -15,7 +15,7 @@
     <form class="navbar-form" role="search" action="{% url 'search' %}" style="width:auto">
 
        <div class="input-group">
-         <input type="text" class="form-control" placeholder="Search Projects" name="title" style="height:38px;">
+         <input type="text" class="form-control" placeholder="Search Projects by title" name="title" style="height:38px;">
          <div class="input-group-btn">
          </div>
        </div>
@@ -23,7 +23,9 @@
      </form>
     <section class="icons-section" >
 
-      <a href="{% url "add_project"%}"><ion-icon name="add" class="ionic"></ion-icon></a>
+<a href="{% url "add_project"%}"><ion-icon name="cloud-upload" class="ionic"></ion-icon></a>
+
+      <!-- <a href="{% url "add_project"%}"><ion-icon name="add" class="ionic"></ion-icon></a> -->
       <a href="{% url 'profile' username=user %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
       <!-- <a class="nav-link open-nav" href="{% url 'profile' username=user %}"> -->
 
