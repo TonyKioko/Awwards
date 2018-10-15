@@ -25,12 +25,12 @@
   <p>
     {% for review in reviews %}
     {% if project.id == review.project.id %}
-
+  <b>{{review.user}}</b>
     {{review.design}}
     {{review.usability}}
 
     {{review.design}}
-
+<br>
     {%endif%}
     {% endfor  %}
 
