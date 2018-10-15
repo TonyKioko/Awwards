@@ -56,8 +56,7 @@ class Project(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     # Converted map into list after this error
-    # unsupported operand type(s) for /: ‘map’ and 'int’
-
+    # unsupported operand type(s) for /: ‘map’ and 'iFalse
     def avg_design(self):
         design_reviews = list(map(lambda x: x.design, self.review_set.all()))
         return np.mean(design_reviews)
@@ -113,9 +112,9 @@ class Review(models.Model):
         (10, '10'),
     )
     # design = models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
-    design = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=True, validators=[MaxValueValidator(10),])
-    usability = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=True, validators=[MaxValueValidator(10),])
-    content = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=True, validators=[MaxValueValidator(10),])
+    design = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=False, validators=[MaxValueValidator(10),])
+    usability = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=False, validators=[MaxValueValidator(10),])
+    content = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=False, validators=[MaxValueValidator(10),])
 
     # usability =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     # content =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
