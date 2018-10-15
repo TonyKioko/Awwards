@@ -128,6 +128,13 @@ def review_project(request,project_id):
         form = ReviewForm()
     return render(request, 'reviews.html', {"user":current_user,"project":proj,"form":form})
 
+def review_list(request):
+    latest_review_list = Review.objects.order_by('-timestamp')[:9]
+    context = {'latest_review_list':latest_review_list}
+    return render(request, 'review_list.html', context)
+def review_detail(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    return render(request, 'review_detail.html', {'review': review})
 
 def search_projects(request):
     # profile = Profile.get_profile()
