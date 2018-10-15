@@ -11,7 +11,7 @@ class SignupForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user']
+        exclude = ['user','timestamp']
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -21,4 +21,4 @@ class ProjectForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        exclude = ['user','project']
+        exclude = ['user','project','average']
