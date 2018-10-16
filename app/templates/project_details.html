@@ -1,4 +1,249 @@
 {%extends 'base.html'%} {% block content %}
+<style>
+.main-container {
+  background: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+.motion-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  position: relative;
+  width: 140px;
+}
+
+.motion-item {
+  height: 120px;
+  position: absolute;
+  width: 120px;
+}
+
+/*----------------------------------------------
+------------------------------------------------
+3. Generic Styles
+------------------------------------------------
+----------------------------------------------*/
+
+.circle {
+  border-radius: 150px;
+  opacity: .8;
+  animation-iteration-count: infinite;
+}
+
+.one {
+  border: 15px solid #032EEB;
+  animation-name: firstmotion;
+  animation-duration: 4s;
+}
+
+.two {
+  border: 15px solid #00E500;
+  animation-name: firstmotion;
+  animation-direction: alternate;
+  animation-delay: .3s;
+  animation-duration: 4s;
+}
+
+.three {
+  border: 15px solid #9C1300;
+  animation-name: secondmotion;
+  animation-duration: 4s;
+}
+
+.four {
+  border: 15px solid #EE3BEB;
+  animation-name: secondmotion;
+  animation-delay: .3s;
+  animation-duration: 4s;
+}
+
+.five {
+  border: 15px solid #EBE800;
+  animation-name: thirdmotion;
+  animation-duration: 4s;
+}
+
+.six {
+  animation-name: thirdmotion;
+  animation-delay: .3s;
+  animation-duration: 4s;
+}
+
+.seven {
+  border: 15px solid #EBEBEB;
+  animation-name: fourthmotion;
+  animation-duration: 4s;
+}
+
+/*----------------------------------------------
+------------------------------------------------
+4. Animation Styles
+------------------------------------------------
+----------------------------------------------*/
+@keyframes firstmotion {
+  from {
+    margin-bottom: 5px;
+  }
+  25% {
+    margin-top: -5px;
+  }
+  50% {
+    margin-top: 0px;
+    margin-left: -5px;
+  }
+
+  75% {
+    margin-left: 5px;
+  }
+  to {
+    margin-top: 5px;
+  }
+}
+
+@keyframes secondmotion {
+  from {
+    margin-top: 5px;
+  }
+  25% {
+    margin-bottom: -5px;
+  }
+  50% {
+    margin-bottom: 0px;
+    margin-right: -5px;
+  }
+
+  75% {
+    margin-right: 5px;
+  }
+  to {
+    margin-bottom: 5px;
+  }
+}
+
+@keyframes thirdmotion {
+  from {
+    margin-right: 5px;
+  }
+  25% {
+    margin-left: -5px;
+  }
+  50% {
+    margin-left: 0px;
+    margin-top: -5px;
+  }
+
+  75% {
+    margin-top: 5px;
+  }
+  to {
+    margin-left: 5px;
+  }
+}
+
+@keyframes fourthmotion {
+  from {
+    margin-left: 5px;
+  }
+  25% {
+    margin-right: -5px;
+  }
+  50% {
+    margin-right: 0px;
+    margin-top: -5px;
+  }
+
+  75% {
+    margin-top: 5px;
+  }
+  to {
+    margin-right: 5px;
+  }
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0
+}
+
+.cont {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #111116;
+    /* height: 100vh; */
+    align-items: center
+}
+
+.progress {
+    width: 200px;
+    height: 200px;
+    font-size: 30px;
+    color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #07070c;
+    text-align: center;
+    line-height: 200px;
+    margin: 20px
+}
+
+.progress::after {content: "%";}
+
+.progress .title {position: relative;z-index: 100;}
+
+.progress .overlay {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #07070c
+}
+
+.progress .left, .progress .right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 10px solid #222235;
+    border-radius: 100px 0px 0px 100px;
+    border-right: 0;
+    transform-origin: right;
+}
+
+.progress .left {animation: load1 1s linear forwards;}
+
+.progress:nth-of-type(2) .right, .progress:nth-of-type(3) .right {animation: load2 .5s linear forwards 1s;}
+
+.progress:last-of-type .right, .progress:first-of-type .right {animation: load3 .8s linear forwards 1s;}
+
+@keyframes load1 {
+    0% {transform: rotate(0deg);}
+
+    100% {transform: rotate(180deg);}
+}
+
+@keyframes load2 {
+    0% {z-index: 100;transform: rotate(180deg);}
+
+    100% {z-index: 100;transform: rotate(270deg);}
+}
+
+@keyframes load3 {
+    0% {z-index: 100;transform: rotate(180deg);}
+
+    100% {
+        z-index: 100;transform: rotate(315deg);}
+}
+</style>
 
 <div class="container">
   <div class="row">
@@ -26,12 +271,80 @@
     {{ project.description  }}
 {% endautoescape %}
   </p>
+
+    <div class="main-container">
+<div class="motion-container">
+  <div class="motion-item circle one"></div>
+  <div class="motion-item circle two"></div>
+  <!-- <div class="motion-item circle three"></div> -->
+  <!-- <div class="motion-item circle four"></div> -->
+  <h style="color:white;">10</h>
+  <!-- <div class="motion-item circle five"></div> -->
+  <!-- <div class="motion-item circle six"></div> -->
+  <div class="motion-item circle seven"></div>
+
+</div><!-- End Motion Container -->
+
+    </div>
   <p>
       <h1>  RATINGS </h1>
+      <div class="row">
       {% if reviews %}
-      {{project.avg_design |floatformat}}
-      {{project.avg_usability |floatformat}}
-      {{project.avg_content |floatformat}} <br>
+<div class="col-md-1"></div>
+<!-- <div class="col-md-2"></div> -->
+      <!-- {{project.avg_design |floatformat}} -->
+      <div class="main-container">
+  <div class="motion-container">
+    <div class="motion-item circle one"></div>
+    <div class="motion-item circle two"></div>
+    <!-- <div class="motion-item circle three"></div> -->
+    <!-- <div class="motion-item circle four"></div> -->
+    <h style="color:white;">{{project.avg_design |floatformat}}</h>
+    <!-- <div class="motion-item circle five"></div> -->
+    <!-- <div class="motion-item circle six"></div> -->
+    <div class="motion-item circle seven"></div>
+
+  </div><!-- End Motion Container --
+
+      </div>
+      <!-- {{project.avg_usability |floatformat}} -->
+      <div class="col-md-2"></div>
+
+      <div class="main-container">
+  <div class="motion-container">
+    <div class="motion-item circle one"></div>
+    <div class="motion-item circle two"></div>
+    <!-- <div class="motion-item circle three"></div> -->
+    <!-- <div class="motion-item circle four"></div> -->
+    <h style="color:white;">{{project.avg_usability |floatformat}}</h>
+    <!-- <div class="motion-item circle five"></div> -->
+    <!-- <div class="motion-item circle six"></div> -->
+    <div class="motion-item circle seven"></div>
+
+  </div><!-- End Motion Container -->
+
+      </div>
+
+      <!-- {{project.avg_content |floatformat}} <br> -->
+      <div class="main-container">
+  <div class="motion-container">
+    <div class="motion-item circle one"></div>
+    <div class="motion-item circle two"></div>
+    <!-- <div class="motion-item circle three"></div> -->
+    <!-- <div class="motion-item circle four"></div> -->
+    <h style="color:white;">  {{project.avg_content |floatformat}}</h>
+    <!-- <div class="motion-item circle five"></div> -->
+    <!-- <div class="motion-item circle six"></div> -->
+    <div class="motion-item circle seven"></div>
+</div>
+  </div>
+</div>
+  <!-- End Motion Container -->
+<!-- <div class="col-md-1"></div> -->
+      </div>
+      <br>
+      <br>
+      <div class="row">
       {%else%}
       <p>This project has no reviews</p>
       {%endif%}
@@ -50,7 +363,7 @@
     {% endfor  %}
 
   </p>
-</div </div>
+</div>
 
 
 
