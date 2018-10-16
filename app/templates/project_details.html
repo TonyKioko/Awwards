@@ -4,7 +4,7 @@
   background: #212121;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   /* height: 100vh; */
 }
 
@@ -14,13 +14,15 @@
   align-items: center;
   height: 140px;
   position: relative;
-  width: 140px;
+  width: 400px;;
+
+  /* width: 140px; */
 }
 
 .motion-item {
-  height: 120px;
+  height: 100px;
   position: absolute;
-  width: 120px;
+  width: 100px;
 }
 
 /*----------------------------------------------
@@ -36,13 +38,13 @@
 }
 
 .one {
-  border: 15px solid #032EEB;
+  border: 7px solid #032EEB;
   animation-name: firstmotion;
   animation-duration: 4s;
 }
 
 .two {
-  border: 15px solid #00E500;
+  border: 7px solid #00E500;
   animation-name: firstmotion;
   animation-direction: alternate;
   animation-delay: .3s;
@@ -50,23 +52,23 @@
 }
 
 .three {
-  border: 15px solid #9C1300;
+  border: 7px solid #9C1300;
   animation-name: secondmotion;
   animation-duration: 4s;
 }
 
 .four {
-  border: 15px solid #EE3BEB;
+  border: 7px solid #EE3BEB;
   animation-name: secondmotion;
   animation-delay: .3s;
   animation-duration: 4s;
 }
 
-.five {
+/* .five {
   border: 15px solid #EBE800;
   animation-name: thirdmotion;
   animation-duration: 4s;
-}
+} */
 
 .six {
   animation-name: thirdmotion;
@@ -74,11 +76,11 @@
   animation-duration: 4s;
 }
 
-.seven {
+/* .seven {
   border: 15px solid #EBEBEB;
   animation-name: fourthmotion;
   animation-duration: 4s;
-}
+} */
 
 /*----------------------------------------------
 ------------------------------------------------
@@ -300,7 +302,7 @@
     <!-- <div class="motion-item circle three"></div> -->
     <!-- <div class="motion-item circle four"></div> -->
     <h style="color:white;">{{project.avg_design |floatformat}}</h>
-    <!-- <div class="motion-item circle five"></div> -->
+    <div class="motion-item circle five"></div>
     <!-- <div class="motion-item circle six"></div> -->
     <div class="motion-item circle seven"></div>
 
@@ -308,17 +310,17 @@
 
       </div>
       <!-- {{project.avg_usability |floatformat}} -->
-      <div class="col-md-2"></div>
+      <!-- <div class="col-md-2"></div> -->
 
       <div class="main-container">
   <div class="motion-container">
     <div class="motion-item circle one"></div>
     <div class="motion-item circle two"></div>
     <!-- <div class="motion-item circle three"></div> -->
-    <!-- <div class="motion-item circle four"></div> -->
+    <div class="motion-item circle four"></div>
     <h style="color:white;">{{project.avg_usability |floatformat}}</h>
     <!-- <div class="motion-item circle five"></div> -->
-    <!-- <div class="motion-item circle six"></div> -->
+    <div class="motion-item circle six"></div>
     <div class="motion-item circle seven"></div>
 
   </div><!-- End Motion Container -->
@@ -351,7 +353,7 @@
 
     {% for review in reviews %}
     {% if project.id == review.project.id %}
-  <b>{{review.user.username}}</b>
+  <b>{{review.user.username}}</b> <br>
 
     {{review.design}}
     {{review.usability}}
