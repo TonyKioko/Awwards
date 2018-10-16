@@ -115,15 +115,16 @@ class Review(models.Model):
     design = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=False)
     usability = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=False)
     content = models.IntegerField(choices=REVIEW_CHOICES,default=0,blank=False)
+    average =  models.DecimalField(default=1,blank=False,decimal_places=2,max_digits=40)
+    project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User,null=True,blank=True)
 
     # usability =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     # content =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     # user =  models.PositiveIntegerField(default=0,blank=True, validators=[MaxValueValidator(10),])
     # user = models.ForeignKey(User,null=True,blank=True)
-    average =  models.DecimalField(default=1,blank=False,decimal_places=2,max_digits=40)
 
-    project = models.ForeignKey(Project,null=True,on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user

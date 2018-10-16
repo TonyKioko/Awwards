@@ -119,7 +119,7 @@ def project_details(request,id):
 def review_project(request,project_id):
     proj = Project.project_by_id(id=project_id)
     project = get_object_or_404(Project, pk=project_id)
-    current_user = request.user.id
+    current_user = request.user
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
