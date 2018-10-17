@@ -199,67 +199,71 @@
 
 .progress .title {position: relative;z-index: 100;}
 
-.progress .overlay {
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background-color: #07070c
-}
 
-.progress .left, .progress .right {
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 10px solid #222235;
-    border-radius: 100px 0px 0px 100px;
-    border-right: 0;
-    transform-origin: right;
-}
 
-.progress .left {animation: load1 1s linear forwards;}
-
-.progress:nth-of-type(2) .right, .progress:nth-of-type(3) .right {animation: load2 .5s linear forwards 1s;}
-
-.progress:last-of-type .right, .progress:first-of-type .right {animation: load3 .8s linear forwards 1s;}
-
-@keyframes load1 {
-    0% {transform: rotate(0deg);}
-
-    100% {transform: rotate(180deg);}
-}
-
-@keyframes load2 {
-    0% {z-index: 100;transform: rotate(180deg);}
-
-    100% {z-index: 100;transform: rotate(270deg);}
-}
-
-@keyframes load3 {
-    0% {z-index: 100;transform: rotate(180deg);}
-
-    100% {
-        z-index: 100;transform: rotate(315deg);}
-}
 </style>
 
 <div class="container">
-  <div class="row">
-    <!-- <div class="projectimage" style='background-image:url("{{project.image.url}}")'> -->
-    <!--  -->
+  <div class="row" style="margin-top:120px;">
+<div class="col-md-1"></div>
+    <div class="col-sm-12 col-md-5 col-lg-4">
 
-    <img src="{{project.image.url}}" alt="" style="width:100%;height:600px;">
-  </div <div class="row">
-  <!-- <div class="projectimage" style='background-image:url("{{project.image.url}}")'> -->
-  <!--  -->
-  <p>
+  <div class="card" style="height:340px;width:150%;margin-bottom:10px;">
+    <div class="card-body">
+      <!-- <a href="{{project.link}}"> -->
+        <a href="{% url 'projectdetails' id=project.id %}">
+
+          <img class="card-img-top mb-10" src="{{project.image.url}}" style="height:300px;">
+        </a>
+
+      <!-- </a> -->
+        <!-- <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;border-radius:20%;">Rate</a> -->
+    </div>
+    <div class="card-body">
+      <div class="card-text">
+        <!-- <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block">Rate</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <!-- Empty div -->
+</div>
+<div class="col-md-4">
+
+<div class="card" style="height:340px;margin-bottom:10px;">
+<div class="card-body">
+    <p>   <b>Title : </b> {{project.title}} </p>
+
+      <p>
+
+        {% autoescape off %}
+        <b>Description : </b>  {{ project.description  }}
+    {% endautoescape %}
+      </p>
+      <br>
+        <!-- <b> Posted:</b> {{project.timestamp | timesince }} ago -->
+    <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;">Rate</a>
+<a href="{{project.link}}" class="btn btn-success btn-block" target="_blank">Visit Site</a>
+<br>
+      <b> Posted:</b> {{project.timestamp | timesince }} ago
+</div>
+<div class="card-body">
+  <div class="card-text">
+    <!-- <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block">Rate</a> -->
+  </div>
+</div>
+</div>
+</div>
+
+<!--  -->
+    <!-- <img src="{{project.image.url}}" alt="" style="width:100%;height:600px;">
+  </div <div class="row"> -->
+
+  <!-- <p>
     <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;border-radius:20%;">Rate</a>
 
-  </p>
+  </p> -->
   <!-- <p>
     <b>Posted:</b> {{project.timestamp | timesince }} ago
   </p>
@@ -272,11 +276,10 @@
     {{ project.description  }}
 {% endautoescape %}
   </p> -->
-</div>
 
     </div>
 
-
+<br>
   <div class="row">
 
 
@@ -351,7 +354,8 @@
     {% for review in reviews %}
     <div class="row">
     {% if project.id == review.project.id %}
-    <div class="col-md-2">Rating by : <b> {{review.user.username}}</b></div>
+    <div class="col-md-2"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3AeEIETd1WF-w7g5xkFdUfvcX0FK7tH5gV7qiidS1iW4hJFAzzw" style="height:40px;width:40px;border-radius:50%">
+       Rating by : <b> {{review.user.username}}</b></div>
   <div class="col-md-2"></div>
 <div class="col-md-2">
 <button type="button" class="btn btn-info btn-lg">{{review.design}}</button>
@@ -371,7 +375,7 @@
 
 
     {%endif%}
-    
+
     </div>
     <hr>
     <br>
