@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
 from decouple import config,Csv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
