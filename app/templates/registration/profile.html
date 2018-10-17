@@ -72,7 +72,7 @@
   <hr>
   <div class="row">
     {% if projects %}
-    <!-- {% if profile.username == user.username %} -->
+    {% if profile.username == user.username %}
     <h2>You have {{ projects | length}} projects
 <span>
   <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >Add Project</a>
@@ -87,7 +87,7 @@
       This user has {{ projects | length}} projects
   <!-- <a class="btn btn-info btn-block" href="{% url 'add_project' %}" >Add Project</a> -->
     </h3>
-        <!-- {%endif%} -->
+        {%endif%}
     {%endif%}
 {% for project in projects %}
 
