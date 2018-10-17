@@ -14,6 +14,8 @@ PyAwards
 5. View projects overall score
 6. View my profile page.
 
+### Live Link ###
+[PyAwards](https://pyawwards.herokuapp.com/)
 ## Getting started
 
 ### Requirements
