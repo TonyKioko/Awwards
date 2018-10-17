@@ -79,8 +79,8 @@
         <!-- </a> -->
 
 <br>
-        <p>By : {{project.user | upper}} <span style="float:right;">{{project.timestamp | date:"D, d-m-Y"}}</span></p>
-          <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;border-radius:20%;">Rate</a>
+        <p style="font-size:16px;">By : {{project.user | upper}} <span style="float:right;font-size:16px;">{{project.timestamp | date:"D, d-m-Y"}}</span></p>
+          <!-- <a href="{% url 'review' project_id=project.id%}" class="btn btn-info btn-block" style="margin-top:4px;border-radius:20%;">Rate</a> -->
           <!-- <span style="float:right;">{{project.timestamp | date:"D, d-m-Y"}}</span> -->
       </div>
       <div class="card-body">

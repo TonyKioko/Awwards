@@ -1,16 +1,15 @@
-{% extends 'base.html' %}
 
 {% load bootstrap4 %}
-{% load static%}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
 
   {% if title %}
-  <title>Instagram - {{title}}</title>
+  <title>PyAwwards - {{title}}</title>
   {% else %}
-    <title> Instagram </title>
+    <title> PyAwwards </title>
   {% endif %}
   {% if messages %}
     <ul class="messages">
@@ -30,7 +29,7 @@
 
 </head>
 <body>
-    {% include "navbar.html" %}
+  {% include "navbar.html" %}
 
     {% block content %} {%endblock%}
 
