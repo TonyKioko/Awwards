@@ -1,7 +1,7 @@
 PyAwards
 ===================
 ## Description
-[PyAwards](https://github.com/TonyKioko/Awwards) is a web application where users can post project(s) they have created and get it reviewed by their peers.
+[PyAwards](https://pyawwards.herokuapp.com/) is a web application where users can post project(s) they have created and get it reviewed by their peers.
 
 ------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@ PyAwards
 ### Requirements
 This project was created on a debian linux platform but should work on other unix based[not limited to] sytems.
 * Tested on Debian Linux
-* Python3
+* Python3.6
 
 ### Cloning the repository
 ```bash
