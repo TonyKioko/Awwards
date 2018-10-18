@@ -36,7 +36,7 @@ sty
         <div class="panel panel-success text-center" style="width:440px;height:auto;border:3px double #0E5582;">
 
             <div class="panel-body">
-              {% if profile_details.photo %}
+              {% if profile_info.photo %}
              <img src="{{profile_details.photo.url}}" alt="profile-photo" class="img-responsive" style="width:150px;height:150px;border-radius:50%;margin-top:6px;">
              {% else %}
              <!-- <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof"> -->
@@ -57,7 +57,7 @@ sty
             <div class="panel-footer">
                   <h4>
 
-                  Contact :  {{ profile_details.contact }}
+                  Contact :  {{ profile_info.contact }}
 
                   </h4>
 
@@ -75,7 +75,7 @@ sty
             <div class="panel-footer">
                   <h4>
 
-                    {{ profile_details.bio }}
+                    {{ profile_info.bio }}
 
                   </h4>
 
@@ -83,7 +83,7 @@ sty
             <div class="panel-footer">
                   <h5>
 
-                  Joined PyAwwards   {{ profile_details.timestamp | timesince }} ago
+                  Joined PyAwwards   {{ profile_info.timestamp | timesince }} ago
 
                 </h5>
 

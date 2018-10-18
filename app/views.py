@@ -51,36 +51,36 @@ def profile(request, username):
     form = ProfileForm()
 
     try :
-        profile_details = Profile.get_by_id(profile.id)
+        profile_info = Profile.get_by_id(profile.id)
     except:
-        profile_details = Profile.filter_by_id(profile.id)
+        profile_info = Profile.filter_by_id(profile.id)
 
 
     projects = Project.get_profile_pic(profile.id)
-    return render(request, 'registration/profile.html', {'title':title,'profile':profile,"projects":projects, 'profile_details':profile_details,"form":form})
+    return render(request, 'registration/profile.html', {'title':title,'profile':profile,"projects":projects, 'profile_info':profile_info,"form":form})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
-    title="Edit"
+
     profile = User.objects.get(username=request.user)
     try :
-        profile_details = Profile.get_by_id(profile.id)
+        profile_info = Profile.get_by_id(profile.id)
     except:
-        profile_details = Profile.filter_by_id(profile.id)
+        profile_info = Profile.filter_by_id(profile.id)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            edit = form.save(commit=False)
-            edit.user = request.user
-            edit.save()
+            update = form.save(commit=False)
+            update.user = request.user
+            update.save()
             # return HttpResponseRedirect(reverse('profile', username=request.user))
 
             return redirect('profile', username=request.user)
     else:
         form = ProfileForm()
 
-    return render(request, 'registration/update_profile.html', {'form':form, 'profile_details':profile_details})
+    return render(request, 'registration/update_profile.html', {'form':form, 'profile_info':profile_info})
 
 @login_required(login_url='/accounts/login')
 def new_project(request):
