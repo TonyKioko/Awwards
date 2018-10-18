@@ -17,19 +17,10 @@ from django.core.urlresolvers import reverse
 # Create your views here.
 
 def signup(request):
-    """
-    signup form view function
-    """
-    # checking if request method is a post
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-
-        # form validationq
         if form.is_valid():
-            # saving user credentials and creating uer instance  if form is valid
             user = form.save()
-
-            # user passed as argument to auth_login function
             auth_login(request, user)
             return redirect('index')
     else:
